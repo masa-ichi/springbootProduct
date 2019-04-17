@@ -3,7 +3,7 @@ spring:
     cache: false
   datasource:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:file:/tmp/springbootProduct
+    url: jdbc:h2:file:/tmp/springbootProduct/v3
     username: sa
     password:
   jpa:

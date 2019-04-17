@@ -17,18 +17,22 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    //全件検索
     public List<Product>findAll(){
         return productRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
     }
 
+    //登録
     public Product save(Product product){
         return productRepository.save(product);
     }
 
+    //削除
     public void delete(Long id){
         productRepository.delete(id);
     }
 
+    //1件検索（id指定）
     public Product find(Long id){
         return productRepository.findOne(id);
     }
