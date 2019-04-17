@@ -1,6 +1,8 @@
 package com.sample.api;
 
 
+import com.sample.service.FileUploadService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,21 +17,42 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 @RestController
+@RequestMapping(value = "api/upload")
 public class FileUploadController {
 
+    @Autowired
+    FileUploadService fileUploadService;
 
-    @RequestMapping(value = "api/upload", method= RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public void handle(
             HttpServletResponse response,
-            @RequestParam MultipartFile file
+            @RequestParam("file") MultipartFile file
     ){
         // ファイルが空の場合は HTTP 400 を返す。
         if (file.isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
+
+//        // ファイル種類から決まる値をセットする
+//        StringBuffer filePath = new StringBuffer("/uploadfile")
+//                .append(File.separator).append("img");   //ファイルパス
+
+//        // アップロードファイルを格納するディレクトリを作成する
+//        File uploadDir = fileUploadService.mkdirs(filePath);
+
+//        System.out.println(filePath);
+
         // アップロードされたファイルを保存。
         try {
+//            File uploadFile = new File(String.valueOf(filePath));
+
+//            byte[] bytes = file.getBytes();
+//            BufferedOutputStream uploadFileStream =
+//                    new BufferedOutputStream(new FileOutputStream(uploadFile));
+//            uploadFileStream.write(bytes);
+//            uploadFileStream.close();
+
             BufferedInputStream in =
                     new BufferedInputStream(file.getInputStream());
             BufferedOutputStream out =

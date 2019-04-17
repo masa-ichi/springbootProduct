@@ -9,7 +9,7 @@
 <body>
 <div>
     <form enctype="multipart/form-data" id="form">
-        <p><input name="file" type="file"></p>
+        <p><input id="file" name="file" type="file"></p>
         <p><input id="upload" type="button" value="アップロード"></p>
     </form>
     <span id="result" style="padding:3px;"></span>
@@ -20,11 +20,14 @@
     $(function() {
         // アップロードボタンが押されたら実行。
         $('#upload').click(function() {
+
+            var ajaxUrl = "api/upload";
+
             var formData = new FormData(
                 $('#form').get()[0]
             );
             $.ajax({
-                url:'api/upload',
+                url: ajaxUrl,
                 method:'post',
                 data:formData,
                 processData:false,
