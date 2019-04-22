@@ -22,7 +22,6 @@ public class FileUploadController {
     @Autowired
     FileUploadService fileUploadService;
 
-
     @RequestMapping(method = RequestMethod.POST)
     public void handle(
 
@@ -38,7 +37,7 @@ public class FileUploadController {
 
         }
 
-        StringBuffer filePath = new StringBuffer("./uploadfile/" + file.getOriginalFilename());
+        StringBuffer filePath = new StringBuffer("./static/uploadfile/" + file.getOriginalFilename());
 
         // アップロードされたファイルを保存。
         try {
